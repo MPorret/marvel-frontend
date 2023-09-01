@@ -35,7 +35,7 @@ const Character = () => {
         setIsLoading(false);
         //   console.log(response.data);
       } catch (error) {
-        console.log(error.response);
+        // console.log(error.response);
         setIsCrash(true);
       }
     };

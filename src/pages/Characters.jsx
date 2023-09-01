@@ -25,15 +25,16 @@ const Characters = () => {
     try {
       const nameToSearch = search.replaceAll(" ", "+");
       const response = await axios.get(
-        `https://backend--marvel--hxhcg25qdky2.code.run/characters?name=${nameToSearch}&page=${
-          page || 1
-        }${userId && `&userId=${userId}`}`
+        `https://backend--marvel--hxhcg25qdky2.code.run/characters?name=${nameToSearch}&page=${page}&userId=${
+          userId || ""
+        }`
       );
       setData(response.data);
       setIsLoading(false);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
+      setIsCrash(true);
     }
   };
 
@@ -50,10 +51,11 @@ const Characters = () => {
         "https://backend--marvel--hxhcg25qdky2.code.run/addcharacter",
         userData
       );
-      console.log(response.data);
+      // console.log(response.data);
       fetchData();
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
+      setIsCrash(true);
     }
   };
 

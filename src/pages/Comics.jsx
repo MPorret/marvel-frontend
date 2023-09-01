@@ -26,13 +26,14 @@ const Comics = () => {
       const response = await axios.get(
         `https://backend--marvel--hxhcg25qdky2.code.run/comics?title=${titleToSearch}&page=${
           page || 1
-        }${userId && `&userId=${userId}`}`
+        }&userId=${userId || ""}`
       );
       setData(response.data);
       setIsLoading(false);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
+      setIsCrash(true);
     }
   };
 
@@ -49,10 +50,11 @@ const Comics = () => {
         "https://backend--marvel--hxhcg25qdky2.code.run/addcomic",
         userData
       );
-      console.log(response.data);
+      // console.log(response.data);
       fetchData();
     } catch (error) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
+      setIsCrash(true);
     }
   };
 

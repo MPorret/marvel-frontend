@@ -21,16 +21,17 @@ const Favorites = ({ token, handleToken, isVisible, visible }) => {
     try {
       const id = Cookies.get("id");
       if (id) {
-        console.log(id);
+        // console.log(id);
         const response = await axios.get(
           `https://backend--marvel--hxhcg25qdky2.code.run/user?id=${id}`
         );
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       }
     } catch (error) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
+      setIsCrash(true);
     }
   };
 
