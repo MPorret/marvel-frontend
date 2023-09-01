@@ -7,12 +7,15 @@ import { Helmet } from "react-helmet";
 import deadpool from "../assets/deadpool.png";
 
 import Connexion from "../components/Connexion";
+import Loading from "../components/Loading";
+import Crash from "../components/Crash";
 
 import "../assets/styles/favorites.scss";
 
 const Favorites = ({ token, handleToken, isVisible, visible }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isCrash, setIsCrash] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -41,8 +44,10 @@ const Favorites = ({ token, handleToken, isVisible, visible }) => {
         <title>My Favorites</title>
       </Helmet>
       {token ? (
-        isLoading ? (
-          <p>Chargement...</p>
+        isCrash ? (
+          <Crash />
+        ) : isLoading ? (
+          <Loading />
         ) : (
           <>
             <h1>{data.account.username}</h1>
@@ -57,7 +62,7 @@ const Favorites = ({ token, handleToken, isVisible, visible }) => {
                 <>
                   <h2>My favorites comics</h2>
                   {data.favorites.comics.length > 0 && (
-                    <section>
+                    <section className="comics">
                       {data.favorites.comics.map((comic) => {
                         return (
                           <Link to={`/comic/${comic._id}`} key={comic._id}>
@@ -76,7 +81,7 @@ const Favorites = ({ token, handleToken, isVisible, visible }) => {
                   )}
                   <h2>My favorites characters</h2>
                   {data.favorites.characters.length > 0 && (
-                    <section>
+                    <section className="characters">
                       {data.favorites.characters.map((character) => {
                         return (
                           <article key={character._id}>

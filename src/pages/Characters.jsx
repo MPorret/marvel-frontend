@@ -6,14 +6,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet";
 
 import Search from "../components/Search";
+import Crash from "../components/Crash";
 
 import "../assets/styles/characters.scss";
+import Loading from "../components/Loading";
 
 const Characters = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [isCrash, setIsCrash] = useState(false);
 
   const userId = Cookies.get("id");
   // const userId = "64ef60606342c2bf53f6bf22";
@@ -22,7 +25,7 @@ const Characters = () => {
     try {
       const nameToSearch = search.replaceAll(" ", "+");
       const response = await axios.get(
-        `http://localhost:3000/characters?name=${nameToSearch}&page=${
+        `https://backend--marvel--hxhcg25qdky2.code.run/characters?name=${nameToSearch}&page=${
           page || 1
         }${userId && `&userId=${userId}`}`
       );
@@ -57,8 +60,10 @@ const Characters = () => {
   return (
     <main className="characters">
       <h1>Characters</h1>
-      {isLoading ? (
-        <p>Chargement...</p>
+      {isCrash ? (
+        <Crash />
+      ) : isLoading ? (
+        <Loading />
       ) : (
         <>
           <Helmet>
@@ -69,14 +74,16 @@ const Characters = () => {
             {data.results.map((character) => {
               return (
                 <article key={character._id}>
-                  <button
-                    className={`heart ${character.favorite && "fav"}`}
-                    onClick={() => {
-                      handleFavorites(character._id);
-                    }}
-                  >
-                    <FontAwesomeIcon icon="heart" />
-                  </button>
+                  {userId && (
+                    <button
+                      className={`heart ${character.favorite && "fav"}`}
+                      onClick={() => {
+                        handleFavorites(character._id);
+                      }}
+                    >
+                      <FontAwesomeIcon icon="heart" />
+                    </button>
+                  )}
                   <Link to={`/character/${character._id}`}>
                     <img
                       src={`${character.thumbnail.path}/standard_xlarge.${character.thumbnail.extension}`}

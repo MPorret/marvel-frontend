@@ -21,7 +21,7 @@
   }
 
   section > section {
-    &:first-of-type {
+    &.comics {
       display: flex;
       gap: 20px;
       width: 100%;
@@ -48,7 +48,7 @@
       }
     }
 
-    &:last-of-type {
+    &.characters {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;

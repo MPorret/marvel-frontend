@@ -19,7 +19,6 @@ import Home from "./pages/Home";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import Character from "./pages/Character";
-import Comic from "./pages/Comic";
 import Favorites from "./pages/Favorites";
 import Page404 from "./pages/Page404";
 
@@ -67,9 +66,6 @@ function App() {
         <Route path="/characters" element={<Characters />} />
         <Route path="/comics" element={<Comics />} />
         <Route path="/character/:characterId" element={<Character />} />
-        <Route path="/comic/:comicId" element={<Comic />} />
-        {/* <Route path="/signup" element={<SignUp handleToken={handleToken} />} />
-        <Route path="/login" element={<LogIn handleToken={handleToken} />} /> */}
         <Route
           path="/favorites"
           element={

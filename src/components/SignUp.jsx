@@ -1,7 +1,6 @@
 import { useState } from "react";
 // import Cookies from "js-cookie";
 import axios from "axios";
-import Dropzone from "react-dropzone";
 
 const SignUp = ({ handleToken, isVisible, setIsModal }) => {
   const [data, setData] = useState({
@@ -38,16 +37,9 @@ const SignUp = ({ handleToken, isVisible, setIsModal }) => {
 
   const signUp = async () => {
     try {
-      const formData = new FormData();
-      //   formData.append("picture", file);
-      formData.append("username", data.username);
-      formData.append("email", data.email);
-      formData.append("password", data.password);
-      console.log(data);
-
       const response = await axios.post(
         "https://backend--marvel--hxhcg25qdky2.code.run/signup",
-        formData
+        data
       );
       handleToken({ token: response.data.token, id: response.data._id });
       isVisible("0");
@@ -74,27 +66,6 @@ const SignUp = ({ handleToken, isVisible, setIsModal }) => {
     >
       <h3>Sign up</h3>
 
-      {file.name ? (
-        <div>
-          <p key={file.name}>Avatar : {file.name}</p>
-        </div>
-      ) : (
-        <Dropzone
-          onDrop={(acceptedFiles) => {
-            setFile(acceptedFiles[0]);
-            console.log("ici", file);
-          }}
-        >
-          {({ getRootProps, getInputProps }) => (
-            <section className="uploadavatar">
-              <div {...getRootProps()}>
-                <input {...getInputProps()} multiple="multiple" />
-                <p>Drag 'n' drop some files here, or click to select files</p>
-              </div>
-            </section>
-          )}
-        </Dropzone>
-      )}
       <input
         type="text"
         name="username"

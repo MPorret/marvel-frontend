@@ -4,27 +4,13 @@ const Search = ({ search, setSearch }) => {
   const items = search;
 
   const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    // console.log(string, results);
     setSearch(string);
   };
 
-  //   const handleOnHover = (result) => {
-  //     // the item hovered
-  //     console.log(result.name);
-  //     setSearch(result.name);
-  //   };
-
   const handleOnSelect = (item) => {
-    // the item selected
     console.log(item.name);
     setSearch(item.name);
   };
-
-  //   const handleOnFocus = () => {
-  //     console.log("Focused");
-  //   };
 
   const formatResult = (item) => {
     return (
@@ -41,9 +27,7 @@ const Search = ({ search, setSearch }) => {
           <ReactSearchAutocomplete
             items={items}
             onSearch={handleOnSearch}
-            // onHover={handleOnHover}
             onSelect={handleOnSelect}
-            // onFocus={handleOnFocus}
             autoFocus
             formatResult={formatResult}
             styling={{
@@ -51,6 +35,7 @@ const Search = ({ search, setSearch }) => {
               border: "none",
               color: "#d9d9d9",
               margin: "0 auto",
+              zIndex: "1",
             }}
           />
         </div>

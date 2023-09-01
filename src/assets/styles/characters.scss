@@ -1,4 +1,4 @@
-.characters {
+main.characters {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +15,22 @@
   article {
     position: relative;
     border: 5px solid #000;
+    width: calc((100% / 2) - 20px);
+
+    img {
+      width: 100%;
+    }
+
+    p {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      background-color: var(--light-grey);
+      border: 2px solid var(--dark-grey);
+      padding: 2px 8px;
+      max-height: 55px;
+      overflow: hidden;
+    }
   }
 
   h2 {
@@ -24,17 +40,6 @@
     background-color: var(--light-grey);
     border: 2px solid var(--dark-grey);
     padding: 2px 8px;
-  }
-
-  p {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    background-color: var(--light-grey);
-    border: 2px solid var(--dark-grey);
-    padding: 2px 8px;
-    max-height: 55px;
-    overflow: hidden;
   }
 
   button {
@@ -89,6 +94,14 @@
     /* Firefox */
     input[type="number"] {
       -moz-appearance: textfield;
+    }
+  }
+}
+
+@media (min-width: 450px) {
+  main.characters {
+    article {
+      width: auto;
     }
   }
 }

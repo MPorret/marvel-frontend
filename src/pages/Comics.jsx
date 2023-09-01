@@ -6,14 +6,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet";
 
 import Search from "../components/Search";
+import Crash from "../components/Crash";
 
 import "../assets/styles/comics.scss";
+import Loading from "../components/Loading";
 
 const Comics = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [isCrash, setIsCrash] = useState(false);
 
   const userId = Cookies.get("id");
 
@@ -56,8 +59,10 @@ const Comics = () => {
   return (
     <main className="comics">
       <h1>Comics</h1>
-      {isLoading ? (
-        <p>Chargement...</p>
+      {isCrash ? (
+        <Crash />
+      ) : isLoading ? (
+        <Loading />
       ) : (
         <>
           <Helmet>
@@ -68,23 +73,23 @@ const Comics = () => {
             {data.results.map((comic) => {
               return (
                 <article key={comic._id}>
-                  <Link to={`/comic/${comic._id}`}>
-                    <h2>{comic.title}</h2>
-                    <img
-                      src={`${comic.thumbnail.path}/portrait_fantastic.${comic.thumbnail.extension}`}
-                      alt=""
-                    />
+                  <h2>{comic.title}</h2>
+                  <img
+                    src={`${comic.thumbnail.path}/portrait_fantastic.${comic.thumbnail.extension}`}
+                    alt=""
+                  />
 
-                    {comic.description && <p>{comic.description}</p>}
-                  </Link>
-                  <button
-                    onClick={() => {
-                      handleFavorites(comic._id);
-                    }}
-                    className={`heart ${comic.favorite && "fav"}`}
-                  >
-                    <FontAwesomeIcon icon="heart" />
-                  </button>
+                  {comic.description && <p>{comic.description}</p>}
+                  {userId && (
+                    <button
+                      onClick={() => {
+                        handleFavorites(comic._id);
+                      }}
+                      className={`heart ${comic.favorite && "fav"}`}
+                    >
+                      <FontAwesomeIcon icon="heart" />
+                    </button>
+                  )}
                 </article>
               );
             })}
