@@ -22,9 +22,9 @@ const Characters = () => {
     try {
       const nameToSearch = search.replaceAll(" ", "+");
       const response = await axios.get(
-        `https://backend--marvel--hxhcg25qdky2.code.run/characters?name=${nameToSearch}&page=${
+        `http://localhost:3000/characters?name=${nameToSearch}&page=${
           page || 1
-        }&userId=${userId}`
+        }${userId && `&userId=${userId}`}`
       );
       setData(response.data);
       setIsLoading(false);
