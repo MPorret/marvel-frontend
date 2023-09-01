@@ -3,12 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars, faHeart, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faHeart,
+  faXmark,
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 
+import Home from "./pages/Home";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
 import Character from "./pages/Character";
@@ -16,7 +23,7 @@ import Comic from "./pages/Comic";
 import Favorites from "./pages/Favorites";
 import Page404 from "./pages/Page404";
 
-library.add(faXmark, faBars, faHeart);
+library.add(faXmark, faBars, faHeart, faChevronRight, faChevronLeft);
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
@@ -56,6 +63,7 @@ function App() {
         setIsMenu={setIsMenu}
       />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/characters" element={<Characters />} />
         <Route path="/comics" element={<Comics />} />
         <Route path="/character/:characterId" element={<Character />} />

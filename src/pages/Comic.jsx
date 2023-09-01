@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Comic = () => {
   const { comicId } = useParams();
@@ -28,6 +29,9 @@ const Comic = () => {
     <p>Chargement...</p>
   ) : (
     <main>
+      <Helmet>
+        <title>{data.title}</title>
+      </Helmet>
       <h1>{data.title}</h1>
       <p>{data.description}</p>
       <img src="" alt="" />

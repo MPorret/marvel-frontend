@@ -2,6 +2,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
+import deadpool from "../assets/deadpool.png";
 
 import Connexion from "../components/Connexion";
 
@@ -34,6 +37,9 @@ const Favorites = ({ token, handleToken, isVisible, visible }) => {
 
   return (
     <main className="user">
+      <Helmet>
+        <title>My Favorites</title>
+      </Helmet>
       {token ? (
         isLoading ? (
           <p>Chargement...</p>
@@ -43,7 +49,10 @@ const Favorites = ({ token, handleToken, isVisible, visible }) => {
             <section>
               {data.favorites.comics.length === 0 &&
               data.favorites.characters.length === 0 ? (
-                <p>You don't have favorite.</p>
+                <>
+                  <p>You don't have favorite.</p>
+                  <img src={deadpool} alt="" className="deadpool" />
+                </>
               ) : (
                 <>
                   <h2>My favorites comics</h2>

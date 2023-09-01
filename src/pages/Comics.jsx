@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Helmet } from "react-helmet";
 
 import Search from "../components/Search";
 
@@ -56,6 +57,9 @@ const Comics = () => {
         <p>Chargement...</p>
       ) : (
         <>
+          <Helmet>
+            <title>Marvel comics</title>
+          </Helmet>
           <Search search={data.search} setSearch={setSearch} />
           <section>
             {data.results.map((comic) => {
@@ -67,12 +71,14 @@ const Comics = () => {
                       src={`${comic.thumbnail.path}/portrait_fantastic.${comic.thumbnail.extension}`}
                       alt=""
                     />
+
                     {comic.description && <p>{comic.description}</p>}
                   </Link>
                   <button
                     onClick={() => {
                       handleFavorites(comic._id);
                     }}
+                    className="heart"
                   >
                     <FontAwesomeIcon icon="heart" />
                   </button>
@@ -80,20 +86,42 @@ const Comics = () => {
               );
             })}
           </section>
-          <label htmlFor="page">Page</label>
-          <input
-            type="number"
-            name="page"
-            id="page"
-            value={page}
-            max={Math.ceil(data.count / data.limit)}
-            min="1"
-            onChange={(event) => {
-              const newValue = event.target.value;
-              setPage(newValue);
-            }}
-          />{" "}
-          / {Math.ceil(data.count / data.limit)}
+          <div className="page">
+            Page{" "}
+            {page > 1 && (
+              <button
+                onClick={() => {
+                  setPage(page - 1);
+                }}
+              >
+                <FontAwesomeIcon icon="chevron-left" />
+              </button>
+            )}
+            <input
+              type="number"
+              name="page"
+              id="page"
+              value={page}
+              max={Math.ceil(data.count / data.limit)}
+              min="1"
+              onChange={(event) => {
+                let newValue = event.target.value;
+                if (newValue > Math.ceil(data.count / data.limit)) {
+                  newValue = Math.ceil(data.count / data.limit);
+                }
+                setPage(newValue);
+              }}
+            />
+            {page < Math.ceil(data.count / data.limit) && (
+              <button
+                onClick={() => {
+                  setPage(page + 1);
+                }}
+              >
+                <FontAwesomeIcon icon="chevron-right" />
+              </button>
+            )}
+          </div>
         </>
       )}
     </main>

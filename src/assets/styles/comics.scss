@@ -12,7 +12,10 @@
   }
 
   article {
+    position: relative;
     width: 168px;
+    height: 500px;
+    overflow: hidden;
   }
 
   h2 {
@@ -21,11 +24,66 @@
     margin-bottom: 10px;
     color: var(--white);
     font-weight: bold;
+    padding-right: 25px;
   }
 
   p {
     color: var(--light-grey);
     text-align: justify;
     margin: 10px 0;
+  }
+
+  .heart {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    z-index: 1;
+    background-color: transparent;
+    color: var(--dark-grey);
+
+    &:hover {
+      cursor: pointer;
+      // font-size: 20px;
+      color: var(--light-grey);
+    }
+
+    .fav {
+      color: var(--light-grey);
+    }
+  }
+
+  .page {
+    color: var(--light-grey);
+    margin-top: 40px;
+
+    button:not(.heart) {
+      margin: 0 10px;
+      background-color: transparent;
+      color: inherit;
+
+      &:hover {
+        cursor: pointer;
+        color: var(--red);
+      }
+    }
+
+    input {
+      background-color: transparent;
+      color: inherit;
+      border: none;
+      font-size: inherit;
+      text-align: center;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
   }
 }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"; // React Hooks
 import { Link } from "react-router-dom"; // Navigate in react site
 import Cookies from "js-cookie"; // Set, get and remove cookies
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Helmet } from "react-helmet";
 
 import Search from "../components/Search";
 
@@ -56,12 +57,16 @@ const Characters = () => {
         <p>Chargement...</p>
       ) : (
         <>
+          <Helmet>
+            <title>Marvel characters</title>
+          </Helmet>
           <Search search={data.search} setSearch={setSearch} />
           <section>
             {data.results.map((character) => {
               return (
                 <article key={character._id}>
                   <button
+                    className="heart"
                     onClick={() => {
                       handleFavorites(character._id);
                     }}
@@ -80,20 +85,42 @@ const Characters = () => {
               );
             })}
           </section>
-          <label htmlFor="page">Page</label>
-          <input
-            type="number"
-            name="page"
-            id="page"
-            value={page}
-            max={Math.ceil(data.count / data.limit)}
-            min="1"
-            onChange={(event) => {
-              const newValue = event.target.value;
-              setPage(newValue);
-            }}
-          />{" "}
-          / {Math.ceil(data.count / data.limit)}
+          <div className="page">
+            Page{" "}
+            {page > 1 && (
+              <button
+                onClick={() => {
+                  setPage(page - 1);
+                }}
+              >
+                <FontAwesomeIcon icon="chevron-left" />
+              </button>
+            )}
+            <input
+              type="number"
+              name="page"
+              id="page"
+              value={page}
+              max={Math.ceil(data.count / data.limit)}
+              min="1"
+              onChange={(event) => {
+                let newValue = event.target.value;
+                if (newValue > Math.ceil(data.count / data.limit)) {
+                  newValue = Math.ceil(data.count / data.limit);
+                }
+                setPage(newValue);
+              }}
+            />
+            {page < Math.ceil(data.count / data.limit) && (
+              <button
+                onClick={() => {
+                  setPage(page + 1);
+                }}
+              >
+                <FontAwesomeIcon icon="chevron-right" />
+              </button>
+            )}
+          </div>
         </>
       )}
     </main>

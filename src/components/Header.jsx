@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Header = ({ token, setIsModal, handleToken, isModal, setIsMenu }) => {
   return (
     <header className="marvel">
-      <img src="/logo.svg" alt="" />
+      <Link to="/">
+        <img src="/logo.svg" alt="" />
+      </Link>
       <button
         className="mobile"
         onClick={() => {

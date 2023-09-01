@@ -37,17 +37,56 @@
     overflow: hidden;
   }
 
-  button {
+  button.heart {
     position: absolute;
     top: 0;
     right: 0;
     z-index: 1;
     background-color: transparent;
-    color: var(--red);
+    color: var(--dark-grey);
 
     &:hover {
       cursor: pointer;
-      font-size: 20px;
+      color: var(--red);
+    }
+
+    .fav {
+      color: var(--red);
+    }
+  }
+
+  .page {
+    color: var(--light-grey);
+    margin-top: 40px;
+
+    button:not(.heart) {
+      margin: 0 10px;
+      background-color: transparent;
+      color: inherit;
+
+      &:hover {
+        cursor: pointer;
+        color: var(--red);
+      }
+    }
+
+    input {
+      background-color: transparent;
+      color: inherit;
+      border: none;
+      font-size: inherit;
+      text-align: center;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
     }
   }
 }

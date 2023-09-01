@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import "../assets/styles/character.scss";
 
@@ -41,6 +42,9 @@ const Character = () => {
     <p>Chargement...</p>
   ) : (
     <main className="character">
+      <Helmet>
+        <title>{data.name}</title>
+      </Helmet>
       <h1>{data.name}</h1>
       <section>
         <img
