@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import doctorStranger from "../assets/strange.webp";
+import doctorStranger from "../assets/Strange.png";
 
 const Menu = ({ token, handleToken, setIsMenu, setIsModal }) => {
   return (
