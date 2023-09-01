@@ -1,0 +1,36 @@
+.page404 {
+  margin-top: 100px;
+  section {
+    display: flex;
+    height: calc(100vh - 280px);
+    flex-direction: column;
+  }
+  p {
+    color: var(--light-grey);
+    margin-top: 100px;
+    font-size: 24px;
+  }
+  img {
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+  }
+}
+
+@media (min-width: 600px) {
+  .page404 {
+    img {
+      width: 300px;
+      right: 60px;
+    }
+  }
+}
+
+@media (min-width: 1144px) {
+  .page404 {
+    img {
+      right: calc((100vw - 1024px) / 2);
+    }
+  }
+}

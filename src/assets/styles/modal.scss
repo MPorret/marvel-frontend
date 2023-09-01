@@ -1,0 +1,139 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  top: 0;
+  left: 0;
+
+  > div:first-child {
+    position: relative;
+    background-color: var(--dark-grey);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.form {
+  margin-top: 60px;
+  button {
+    background-color: var(--medium-grey);
+    width: 50%;
+    padding: 15px;
+    margin-top: 30px;
+    color: var(--light-grey);
+    border-radius: 20px 20px 0 0;
+    box-shadow: inset 0 -5px 5px #000000ab;
+
+    &:disabled {
+      box-shadow: 0 -5px 5px #000000ab;
+      background-color: transparent;
+    }
+  }
+}
+
+.connexion {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+  gap: 40px;
+
+  h3 {
+    font-family: "Marvel", sans-serif;
+    text-transform: uppercase;
+    font-size: 40px;
+    margin-top: 50px;
+    color: var(--light-grey);
+    text-align: center;
+  }
+
+  .uploadavatar {
+    border: 2px dashed var(--red);
+    border-radius: 10px;
+    padding: 20px;
+    color: var(--medium-grey);
+  }
+
+  input {
+    border: none;
+    background-color: var(--medium-grey);
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 18px;
+  }
+
+  button {
+    &:first-of-type {
+      border-radius: 10px;
+      padding: 10px;
+      background-color: var(--red);
+      border: 2px solid var(--dark-grey);
+      color: var(--white);
+      font-weight: bold;
+    }
+    &:last-of-type {
+      background-color: transparent;
+      color: var(--light-grey);
+    }
+  }
+}
+
+.menu {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  align-items: left;
+  padding-top: 50px;
+
+  img {
+    height: 350px;
+    object-fit: cover;
+  }
+
+  a,
+  button {
+    font-family: "Marvel", sans-serif;
+    text-transform: uppercase;
+    color: var(--white);
+    font-size: 40px;
+    background-color: transparent;
+    text-align: inherit;
+    padding: 0 100px;
+
+    &:hover {
+      color: var(--red);
+      transition: all 0.2s;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    background-color: #2e2c308a;
+
+    & > div:first-child {
+      width: 500px;
+      height: 800px;
+      border-radius: 10px;
+    }
+
+    .desktop {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: var(--light-grey);
+    }
+  }
+
+  .form {
+    margin-top: 30px;
+  }
+}

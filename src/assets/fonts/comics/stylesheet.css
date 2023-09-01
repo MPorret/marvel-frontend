@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'CCWildWordsLower';
+    src: url('CCWildWordsLower.eot');
+    src: url('CCWildWordsLower.eot?#iefix') format('embedded-opentype'),
+        url('CCWildWordsLower.woff2') format('woff2'),
+        url('CCWildWordsLower.woff') format('woff'),
+        url('CCWildWordsLower.ttf') format('truetype'),
+        url('CCWildWordsLower.svg#CCWildWordsLower') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
