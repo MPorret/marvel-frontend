@@ -15,23 +15,26 @@ const Characters = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const nameToSearch = search.replaceAll(" ", "+");
-        const response = await axios.get(
-          `https://backend--marvel--hxhcg25qdky2.code.run/characters?name=${nameToSearch}&page=${
-            page || 1
-          }`
-        );
-        setData(response.data);
-        setIsLoading(false);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
+  const userId = Cookies.get("id");
+  // const userId = "64ef60606342c2bf53f6bf22";
 
+  const fetchData = async () => {
+    try {
+      const nameToSearch = search.replaceAll(" ", "+");
+      const response = await axios.get(
+        `https://backend--marvel--hxhcg25qdky2.code.run/characters?name=${nameToSearch}&page=${
+          page || 1
+        }&userId=${userId}`
+      );
+      setData(response.data);
+      setIsLoading(false);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, [search, page]);
 
@@ -45,8 +48,9 @@ const Characters = () => {
         userData
       );
       console.log(response.data);
+      fetchData();
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response);
     }
   };
 
@@ -66,7 +70,7 @@ const Characters = () => {
               return (
                 <article key={character._id}>
                   <button
-                    className="heart"
+                    className={`heart ${character.favorite && "fav"}`}
                     onClick={() => {
                       handleFavorites(character._id);
                     }}

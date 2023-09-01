@@ -74,9 +74,11 @@
         left: 0px;
         background-color: var(--light-grey);
         border: 2px solid var(--dark-grey);
+        color: var(--dark-grey);
         padding: 2px 8px;
         max-height: 55px;
         overflow: hidden;
+        margin: 0;
       }
     }
   }

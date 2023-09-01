@@ -37,20 +37,22 @@
     overflow: hidden;
   }
 
-  button.heart {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
-    background-color: transparent;
-    color: var(--dark-grey);
+  button {
+    &.heart {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      background-color: transparent;
+      color: var(--dark-grey);
 
-    &:hover {
-      cursor: pointer;
-      color: var(--red);
+      &:hover {
+        cursor: pointer;
+        color: var(--red);
+      }
     }
 
-    .fav {
+    &.fav {
       color: var(--red);
     }
   }

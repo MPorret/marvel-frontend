@@ -15,15 +15,18 @@ const Comics = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
-  const handleFavorites = async (comicId) => {
+  const userId = Cookies.get("id");
+
+  const fetchData = async () => {
     try {
-      const userId = Cookies.get("id");
-      const userData = { comicId, userId };
-      console.log(userData);
-      const response = await axios.post(
-        "https://backend--marvel--hxhcg25qdky2.code.run/addcomic",
-        userData
+      const titleToSearch = search.replaceAll(" ", "+");
+      const response = await axios.get(
+        `https://backend--marvel--hxhcg25qdky2.code.run/comics?title=${titleToSearch}&page=${
+          page || 1
+        }&userId=${userId}`
       );
+      setData(response.data);
+      setIsLoading(false);
       console.log(response.data);
     } catch (error) {
       console.log(error.response.data);
@@ -31,24 +34,24 @@ const Comics = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const titleToSearch = search.replaceAll(" ", "+");
-        const response = await axios.get(
-          `https://backend--marvel--hxhcg25qdky2.code.run/comics?title=${titleToSearch}&page=${
-            page || 1
-          }`
-        );
-        setData(response.data);
-        setIsLoading(false);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-
     fetchData();
   }, [search, page]);
+
+  const handleFavorites = async (comicId) => {
+    try {
+      const userId = Cookies.get("id");
+      const userData = { comicId, userId };
+      // console.log(userData);
+      const response = await axios.post(
+        "https://backend--marvel--hxhcg25qdky2.code.run/addcomic",
+        userData
+      );
+      console.log(response.data);
+      fetchData();
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 
   return (
     <main className="comics">
@@ -78,7 +81,7 @@ const Comics = () => {
                     onClick={() => {
                       handleFavorites(comic._id);
                     }}
-                    className="heart"
+                    className={`heart ${comic.favorite && "fav"}`}
                   >
                     <FontAwesomeIcon icon="heart" />
                   </button>
