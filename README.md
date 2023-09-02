@@ -24,7 +24,7 @@ Show all marvel comics by page.
 Add or remove favorite comic (if user logged).
 Search comics by title.
 
-![characters page](./src/assets/readme/comics.png)
+![comics page](./src/assets/readme/comics.png)
 
 ## User page
 

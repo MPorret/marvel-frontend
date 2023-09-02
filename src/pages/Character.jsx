@@ -33,7 +33,7 @@ const Character = () => {
         }
         setComics(newComic);
         setIsLoading(false);
-        //   console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         // console.log(error.response);
         setIsCrash(true);

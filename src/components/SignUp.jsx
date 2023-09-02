@@ -9,8 +9,6 @@ const SignUp = ({ handleToken, isVisible, setIsModal }) => {
     password: "",
   });
 
-  const [file, setFile] = useState({});
-
   const [errorMessage, setErrorMessage] = useState();
 
   const handleChange = (event, { action }) => {
