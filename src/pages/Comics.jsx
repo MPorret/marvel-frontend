@@ -47,7 +47,7 @@ const Comics = () => {
       const userData = { comicId, userId };
       // console.log(userData);
       const response = await axios.post(
-        "https://backend--marvel--hxhcg25qdky2.code.run/addcomic",
+        "https://backend--marvel--hxhcg25qdky2.code.run/togglecomic",
         userData
       );
       // console.log(response.data);

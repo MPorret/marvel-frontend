@@ -48,7 +48,7 @@ const Characters = () => {
       const userData = { characterId, userId };
       // console.log(userData);
       const response = await axios.post(
-        "https://backend--marvel--hxhcg25qdky2.code.run/addcharacter",
+        "https://backend--marvel--hxhcg25qdky2.code.run/togglecharacter",
         userData
       );
       // console.log(response.data);
