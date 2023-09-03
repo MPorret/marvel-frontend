@@ -1,6 +1,6 @@
 import "./App.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -29,6 +29,8 @@ function App() {
   const [visible, setVisible] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [isMenu, setIsMenu] = useState(false);
+
+  useEffect(() => {}, [isMenu]);
 
   // Add cookie if user log in & remove cookie when user disconnect
   const handleToken = ({ token, id }) => {
@@ -88,7 +90,7 @@ function App() {
           visible={visible}
           setIsModal={setIsModal}
           isMenu={isMenu}
-          setIsMenu={{ setIsMenu }}
+          setIsMenu={setIsMenu}
         />
       )}
     </Router>

@@ -42,8 +42,9 @@ const Menu = ({ token, handleToken, setIsMenu, setIsModal }) => {
       ) : (
         <button
           onClick={() => {
-            setIsModal(false);
+            // setIsModal(false);
             setIsMenu(false);
+            // setIsModal(true);
           }}
         >
           SIGN UP / LOG IN
